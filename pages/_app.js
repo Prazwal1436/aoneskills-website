@@ -5,10 +5,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Digital Extra - Best Digital Agency</title>
+        <title>A-One Skills - Best Digital Marketing Agency</title>
         <meta name="description" content="Best Digital Agency for Growth Marketing, Online Branding, and Animated Ads. Transform your business with our digital solutions." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/img/logo.png" />
         
         {/* Bootstrap CSS */}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
