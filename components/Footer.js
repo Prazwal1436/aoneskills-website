@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-box modern-footer">
           <div className="footer-col footer-brand">
             <div className="footer-logo-box">
-              <Image src="/img/logo.png" alt="Digital Extra Logo" width={120} height={120} className="footer-logo" style={{objectFit: 'contain', borderRadius: '18px', background: '#fff'}} />
+              <Image src="/img/logo.png" alt=" Logo" width={120} height={120} className="footer-logo" style={{objectFit: 'contain', borderRadius: '18px', background: '#fff'}} />
             </div>
             <p>We are passionate about delivering exceptional digital experiences that drive real business results. Our team combines creativity with cutting-edge technology to help your brand stand out in the competitive digital landscape.</p>
           </div>

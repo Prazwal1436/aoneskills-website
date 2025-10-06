@@ -1,4 +1,4 @@
-# Digital Extra - Next.js Version
+#  - Next.js Version
 
 This is a Next.js conversion of the original HTML/CSS/JS digital agency website.
 

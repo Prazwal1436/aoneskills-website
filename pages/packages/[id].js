@@ -5,6 +5,9 @@ const packages = [
   {
     title: '💼 Basic Website',
     price: 'NPR 25,000',
+    discount: 20,
+    renew: 'Renews at NPR 5,000/year',
+    offer: 'Limited Time Offer',
     desc: 'Perfect for: Personal brands, portfolios, small businesses',
     features: [
       '5–6 Pages (Home, About, Services, Contact, etc.)',
@@ -15,10 +18,14 @@ const packages = [
       '1 Month Free Support',
     ],
     delivery: '📅 Delivery: 7–10 Days',
+    extra: 'Includes free SSL, hosting setup, and basic training.'
   },
   {
     title: '🚀 Standard Business Website',
     price: 'NPR 45,000',
+    discount: 20,
+    renew: 'Renews at NPR 8,000/year',
+    offer: 'Limited Time Offer',
     desc: 'Perfect for: Companies, organizations, service providers',
     features: [
       'Up to 10 Pages with Semi-Custom Design',
@@ -30,10 +37,14 @@ const packages = [
       '2 Months Free Support',
     ],
     delivery: '📅 Delivery: 2–3 Weeks',
+    extra: 'Includes Google Analytics setup, free SSL, and 2 months support.'
   },
   {
     title: '🏆 Premium / Corporate Website',
     price: 'NPR 80,000',
+    discount: 20,
+    renew: 'Renews at NPR 15,000/year',
+    offer: 'Limited Time Offer',
     desc: 'Perfect for: Agencies, growing businesses, large companies',
     features: [
       'Up to 25 Pages – Fully Custom Design',
@@ -45,10 +56,14 @@ const packages = [
       '3 Months Priority Support',
     ],
     delivery: '📅 Delivery: 3–5 Weeks',
+    extra: 'Includes advanced SEO, priority support, and CMS training.'
   },
   {
     title: '🛒 E-Commerce Website',
     price: 'NPR 150,000',
+    discount: 20,
+    renew: 'Renews at NPR 25,000/year',
+    offer: 'Limited Time Offer',
     desc: 'Perfect for: Online shops, product-based businesses',
     features: [
       'Unlimited Product Listings',
@@ -61,6 +76,7 @@ const packages = [
       '6 Months Priority Support',
     ],
     delivery: '📅 Delivery: 4–6 Weeks',
+    extra: 'Includes payment gateway setup, inventory training, and 6 months support.'
   }
 ];
 
@@ -78,6 +94,14 @@ export default function PackageDetails() {
   ];
   const heroImg = heroImages[id] || '/img/default-package.png';
 
+  // Discounted price helper
+  const getDiscountedPrice = (priceStr, discount) => {
+    const num = parseInt(priceStr.replace(/[^\d]/g, ''));
+    if (isNaN(num)) return priceStr;
+    const discounted = Math.round(num * (1 - (discount / 100)));
+    return `NPR ${discounted.toLocaleString()}`;
+  };
+
   if (!pkg) {
     return <div style={{ textAlign: 'center', marginTop: 80 }}><h2>Package not found</h2></div>;
   }
@@ -86,11 +110,34 @@ export default function PackageDetails() {
     <div className="package-details-bg">
       <div className="package-details-container">
         <div className="package-details-card">
+          {/* Offer Banner */}
+          <div style={{
+            width: '100%',
+            background: 'linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%)',
+            color: '#fff',
+            fontWeight: 800,
+            fontSize: '1.18rem',
+            textAlign: 'center',
+            padding: '0.7rem 0',
+            letterSpacing: '1px',
+            borderBottom: '2px solid #e53935',
+            position: 'relative',
+            zIndex: 2,
+            boxShadow: '0 2px 12px #fc5c7d22',
+            marginBottom: '1.2rem',
+          }}>
+            <span style={{ fontSize: '1.35rem', marginRight: 8 }}>🔥</span>
+            {pkg.offer} &nbsp;|&nbsp; {pkg.discount}% OFF!
+          </div>
           <div className="package-details-hero">
             <img src={heroImg} alt={pkg.title} className="package-details-img" />
             <div className="package-details-title-group">
               <h2 className="package-details-title">{pkg.title}</h2>
-              <span className="package-details-price">{pkg.price}</span>
+              <span className="package-details-price" style={{ textDecoration: 'line-through', color: '#888', fontWeight: 500, marginRight: 8 }}>{pkg.price}</span>
+              <span className="package-details-price" style={{ color: '#388e3c', fontWeight: 800, fontSize: '1.18rem', background: '#e8f5e9', borderRadius: '8px', padding: '0.2em 1em', boxShadow: '0 2px 8px #388e3c22', marginBottom: 2 }}>
+                {getDiscountedPrice(pkg.price, pkg.discount)}
+              </span>
+              <span className="package-details-renew" style={{ color: '#e53935', fontWeight: 700, fontSize: '1.08rem', marginTop: 2, display: 'block' }}>{pkg.renew}</span>
             </div>
           </div>
           <p className="package-details-desc">{pkg.desc}</p>
@@ -102,6 +149,9 @@ export default function PackageDetails() {
           </div>
           <div className="package-details-support">
             <span>Support:</span> {pkg.features[pkg.features.length-1]}
+          </div>
+          <div className="package-details-extra" style={{ marginBottom: '1.1rem', color: '#14208a', fontWeight: 600, fontSize: '1.02rem' }}>
+            <span>Extra:</span> {pkg.extra}
           </div>
           <div className="package-details-contact">
             <span>Contact for Customization:</span> <a href="mailto:contact@aoneskills.com.np">contact@aoneskills.com.np</a>
