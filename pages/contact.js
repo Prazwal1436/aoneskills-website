@@ -19,16 +19,17 @@ export default function Contact() {
                 <img src="/img/contact.jpg" alt="Contact" className="contact-page-img" />
               </div>
               <div className="contact-page-map-card">
-                <iframe
-                  title="Digital Extra Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.484624735408!2d85.3240!3d27.7000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDQyJzAwLjAiTiA4NcKwMTknMjQuMCJF!5e0!3m2!1sen!2snp!4v1660000000000!5m2!1sen!2snp"
-                  width="100%"
-                  height="180"
-                  style={{ border: 0, borderRadius: '1rem', boxShadow: '0 2px 12px #6a82fb22' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                <div style={{ width: '100%', maxWidth: 800, margin: '2rem auto', borderRadius: '18px', overflow: 'hidden', boxShadow: '0 4px 24px #1a237e22' }}>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d222.84311999076527!2d87.69380614441754!3d26.66480947114015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e2!4m0!4m3!3m2!1d26.664901046830195!2d87.69379819236062!5e0!3m2!1sen!2snp!4v1759744556524!5m2!1sen!2snp"
+                    width="600"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
             </div>
             <div className="contact-page-right">
@@ -49,7 +50,7 @@ export default function Contact() {
                   <span className="contact-page-link-text">984-2747572</span>
                 </div>
                 <div className="contact-page-link-group">
-                  <span className="contact-page-link-icon"><i className="fa fa-whatsapp"></i></span>
+                  <span className="contact-page-link-icon"><i className="fab fa-whatsapp"></i></span>
                   <span className="contact-page-link-text">+977 984-2747572</span>
                 </div>
                 <div className="contact-page-link-group">

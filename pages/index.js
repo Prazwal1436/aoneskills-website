@@ -70,7 +70,7 @@ export default function Home() {
                       transition: 'background 0.2s, transform 0.2s',
                     }}
                   >
-                    <i className="fa fa-whatsapp"></i>
+                    <i className="fab fa-whatsapp"></i>
                   </button>
                   <div
                     id="contact-float-menu"
@@ -121,7 +121,7 @@ export default function Home() {
                         }}
                         title="Chat on WhatsApp"
                       >
-                        <i className="fa fa-whatsapp" style={{ marginRight: '0.7rem', fontSize: '1.2rem' }}></i>
+                        <i className="fab fa-whatsapp" style={{ marginRight: '0.7rem', fontSize: '1.2rem' }}></i>
                         WhatsApp
                       </a>
                     </div>

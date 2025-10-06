@@ -2,6 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 
 export default function PackagesCarousel() {
+  // Touch gesture state
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+
+  // Handle touch start
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  // Handle touch move
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  // Handle touch end
+  const handleTouchEnd = () => {
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const delta = touchEndX.current - touchStartX.current;
+      if (Math.abs(delta) > 50) {
+        if (delta > 0) {
+          prev(); // Swipe right
+        } else {
+          next(); // Swipe left
+        }
+      }
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
   const router = useRouter();
   const packages = [
     {
@@ -85,13 +114,14 @@ export default function PackagesCarousel() {
     return () => clearInterval(timer);
   }, [packages.length]);
 
+  // Endless carousel logic
   const prev = () => {
     setDirection('right');
     setAnimating(true);
     setTimeout(() => {
       setActive((prevActive) => {
-        // Loop so that prev from first card goes to last possible center
-        if (prevActive <= 1) return lastCenter;
+        // Loop endlessly: if at first, go to last possible center
+        if (prevActive <= 1) return packages.length;
         return prevActive - 1;
       });
       setAnimating(false);
@@ -102,8 +132,8 @@ export default function PackagesCarousel() {
     setAnimating(true);
     setTimeout(() => {
       setActive((prevActive) => {
-        // Loop so that next from last possible center goes to first
-        if (prevActive >= lastCenter) return 1;
+        // Loop endlessly: if at last, go to first
+        if (prevActive >= packages.length) return 1;
         return prevActive + 1;
       });
       setAnimating(false);
@@ -127,11 +157,16 @@ export default function PackagesCarousel() {
     return -offset;
   };
 
-  // ...existing code...
-
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 540, width: '100%' }}>
-  <button className="btn btn-outline-primary carousel-arrow-btn" style={{ height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginRight: 16 }} onClick={prev} aria-label="Previous Package">&#8592;</button>
+    <div
+      style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: 540, width: '100%' }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Overlayed carousel arrow buttons on two sides */}
+      <button className="carousel-arrow-btn carousel-arrow-left" style={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)', zIndex: 2, height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginLeft: 8, background: '#fff', boxShadow: '0 2px 12px #6a82fb22', border: '1px solid #6a82fb' }} onClick={prev} aria-label="Previous Package">&#8592;</button>
+      <button className="carousel-arrow-btn carousel-arrow-right" style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', zIndex: 2, height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginRight: 8, background: '#fff', boxShadow: '0 2px 12px #6a82fb22', border: '1px solid #6a82fb' }} onClick={next} aria-label="Next Package">&#8594;</button>
       <div className="carousel-row-wrapper" style={{ overflow: 'hidden', width: carouselWidth, maxWidth: '100%' }}>
         <div
           className="carousel-row"
@@ -215,8 +250,7 @@ export default function PackagesCarousel() {
           ))}
         </div>
       </div>
-  <button className="btn btn-outline-primary carousel-arrow-btn" style={{ height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginLeft: 16 }} onClick={next} aria-label="Next Package">&#8594;</button>
-  <style jsx>{`
+      <style jsx>{`
         .carousel-row {
           will-change: transform;
         }
@@ -226,11 +260,12 @@ export default function PackagesCarousel() {
         }
         .carousel-arrow-btn {
           display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: box-shadow 0.2s, background 0.2s;
         }
-        @media (max-width: 900px) {
-          .carousel-row-wrapper {
-            width: 700px;
-          }
+        .carousel-arrow-btn:active {
+          background: #e3eafc;
         }
         @media (max-width: 600px) {
           .carousel-row-wrapper {
@@ -249,7 +284,9 @@ export default function PackagesCarousel() {
             padding: 0 4px !important;
           }
           .carousel-arrow-btn {
-            display: none !important;
+            height: 48px !important;
+            width: 48px !important;
+            font-size: 22px !important;
           }
         }
       `}</style>

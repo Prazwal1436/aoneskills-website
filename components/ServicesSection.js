@@ -13,33 +13,39 @@ export default function ServicesSection() {
           <div className="col-12 col-sm-10 col-md-4 d-flex mb-4 mb-md-0">
             <div className="card service-card w-100 h-100 border-0 shadow-lg">
               <div className="card-body text-center py-4 px-3 px-md-4">
-                <div className="service-icon service-icon-animate" style={{ color: '#6a82fb' }}>
-                  <i className="fas fa-laptop-code"></i>
+                <div className="service-icon service-icon-animate" style={{ color: '#4267B2' }}>
+                  <i className="fab fa-facebook-square"></i>
+                  <i className="fab fa-instagram" style={{ marginLeft: '0.5rem', color: '#E1306C' }}></i>
                 </div>
-                <h5 className="card-title mb-3">Web Development</h5>
-                <p className="card-text mb-0">Custom websites and web apps built for performance, security, and growth.</p>
+                <h5 className="card-title mb-3">Facebook & Instagram Boosting</h5>
+                <div className="service-price" style={{ fontWeight: 700, color: '#e53935', marginBottom: '0.5rem', fontSize: '1.08rem' }}>Only at Rs 180 per $1</div>
+                <p className="card-text mb-0">Grow your audience and sales with expert ad campaigns, page management, and influencer strategies on Facebook & Instagram.</p>
               </div>
             </div>
           </div>
           <div className="col-12 col-sm-10 col-md-4 d-flex mb-4 mb-md-0">
             <div className="card service-card w-100 h-100 border-0 shadow-lg">
               <div className="card-body text-center py-4 px-3 px-md-4">
-                <div className="service-icon service-icon-animate" style={{ color: '#fc5c7d' }}>
-                  <i className="fas fa-bullhorn"></i>
+                <div className="service-icon service-icon-animate" style={{ color: '#6a82fb' }}>
+                  <i className="fas fa-globe"></i>
+                  <i className="fas fa-code" style={{ marginLeft: '0.5rem', color: '#14208a' }}></i>
                 </div>
-                <h5 className="card-title mb-3">Digital Marketing</h5>
-                <p className="card-text mb-0">Growth marketing, SEO, and online campaigns to boost your brand visibility.</p>
+                <h5 className="card-title mb-3">Website Design & Development</h5>
+                <div className="service-price" style={{ fontWeight: 700, color: '#e53935', marginBottom: '0.5rem', fontSize: '1.08rem' }}>Starting From Rs 25,000</div>
+                <p className="card-text mb-0">Modern, mobile-friendly websites and web apps tailored for your business, with fast delivery and ongoing support.</p>
               </div>
             </div>
           </div>
           <div className="col-12 col-sm-10 col-md-4 d-flex">
             <div className="card service-card w-100 h-100 border-0 shadow-lg">
               <div className="card-body text-center py-4 px-3 px-md-4">
-                <div className="service-icon service-icon-animate" style={{ color: '#ffe082' }}>
-                  <i className="fas fa-paint-brush"></i>
+                <div className="service-icon service-icon-animate" style={{ color: '#fc5c7d' }}>
+                  <i className="fas fa-bullhorn"></i>
+                  <i className="fas fa-paint-brush" style={{ marginLeft: '0.5rem', color: '#ffe082' }}></i>
                 </div>
-                <h5 className="card-title mb-3">Branding & Design</h5>
-                <p className="card-text mb-0">Creative branding, logo, and design services for a memorable identity.</p>
+                <h5 className="card-title mb-3">Branding & Digital Marketing</h5>
+                <div className="service-price" style={{ fontWeight: 700, color: '#e53935', marginBottom: '0.5rem', fontSize: '1.08rem' }}>Starting From Rs 8,000</div>
+                <p className="card-text mb-0">Creative branding, logo design, and digital marketing to make your business stand out and grow online.</p>
               </div>
             </div>
           </div>

@@ -16,15 +16,15 @@ export default function Footer() {
             <p className="footer-contact-title">CONTACT INFO</p>
             <div className="footer-contact-column">
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-phone"></i></span>
+                <span className="footer-contact-icon"><i className="fas fa-phone"></i></span>
                 <span className="footer-contact-text">984-2747572</span>
               </span>
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-whatsapp"></i></span>
+                <span className="footer-contact-icon"><i className="fab fa-whatsapp"></i></span>
                 <span className="footer-contact-text">+977 984-2747572</span>
               </span>
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-envelope"></i></span>
+                <span className="footer-contact-icon"><i className="fas fa-envelope"></i></span>
                 <span className="footer-contact-text">contact@aoneskills.com.np</span>
               </span>
             </div>
@@ -33,19 +33,19 @@ export default function Footer() {
             <p className="footer-contact-title">SOCIAL LINKS</p>
             <div className="footer-contact-column">
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-instagram"></i></span>
+                <span className="footer-contact-icon"><i className="fab fa-instagram"></i></span>
                 <span className="footer-contact-text">aoneskills</span>
               </span>
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-facebook"></i></span>
+                <span className="footer-contact-icon"><i className="fab fa-facebook"></i></span>
                 <a href="https://facebook.com/aoneskills" className="footer-contact-link" target="_blank" rel="noopener noreferrer">Facebook</a>
               </span>
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-linkedin"></i></span>
+                <span className="footer-contact-icon"><i className="fab fa-linkedin"></i></span>
                 <a href="https://linkedin.com/company/aoneskills" className="footer-contact-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               </span>
               <span className="footer-contact-item" style={{display: 'flex', alignItems: 'center', gap: '0.7rem', width: '100%'}}>
-                <span className="footer-contact-icon"><i className="fa fa-link"></i></span>
+                <span className="footer-contact-icon"><i className="fas fa-link"></i></span>
                 <a href="https://aoneskills.com.np" className="footer-contact-link">aoneskills.com.np</a>
               </span>
             </div>
@@ -144,7 +144,7 @@ export default function Footer() {
           justify-content: center;
           border-radius: 50%;
           background: radial-gradient(circle at 60% 40%, #6a82fb 0%, #14208a 100%);
-          color: #1a237e;
+          color: #fff; /* Changed from #1a237e to white */
           font-size: 1.35rem;
           box-shadow: 0 4px 16px 0 rgba(20,32,138,0.12);
           border: 2px solid #6a82fb;

@@ -16,7 +16,7 @@ export default function ContactSection() {
               <div className="contact-icon-wrap redesigned-contact-icon-wrap">
                 <span className="contact-icon redesigned-contact-icon"><i className="fa fa-envelope"></i></span>
                 <span className="contact-icon redesigned-contact-icon"><i className="fa fa-phone"></i></span>
-                <span className="contact-icon redesigned-contact-icon"><i className="fa fa-whatsapp"></i></span>
+                <span className="contact-icon redesigned-contact-icon"><i className="fab fa-whatsapp"></i></span>
               </div>
               <h2 className="contact-title redesigned-contact-title">Contact Us</h2>
               <p className="contact-desc redesigned-contact-desc">
