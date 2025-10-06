@@ -131,7 +131,7 @@ export default function PackagesCarousel() {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 540, width: '100%' }}>
-      <button className="btn btn-outline-primary" style={{ height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginRight: 16 }} onClick={prev} aria-label="Previous Package">&#8592;</button>
+  <button className="btn btn-outline-primary carousel-arrow-btn" style={{ height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginRight: 16 }} onClick={prev} aria-label="Previous Package">&#8592;</button>
       <div className="carousel-row-wrapper" style={{ overflow: 'hidden', width: carouselWidth, maxWidth: '100%' }}>
         <div
           className="carousel-row"
@@ -215,7 +215,7 @@ export default function PackagesCarousel() {
           ))}
         </div>
       </div>
-      <button className="btn btn-outline-primary" style={{ height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginLeft: 16 }} onClick={next} aria-label="Next Package">&#8594;</button>
+  <button className="btn btn-outline-primary carousel-arrow-btn" style={{ height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginLeft: 16 }} onClick={next} aria-label="Next Package">&#8594;</button>
   <style jsx>{`
         .carousel-row {
           will-change: transform;
@@ -223,6 +223,9 @@ export default function PackagesCarousel() {
         .carousel-row-wrapper {
           width: ${carouselWidth}px;
           max-width: 100%;
+        }
+        .carousel-arrow-btn {
+          display: inline-flex;
         }
         @media (max-width: 900px) {
           .carousel-row-wrapper {
@@ -244,6 +247,9 @@ export default function PackagesCarousel() {
             max-height: none !important;
             overflow-y: visible !important;
             padding: 0 4px !important;
+          }
+          .carousel-arrow-btn {
+            display: none !important;
           }
         }
       `}</style>

@@ -15,7 +15,7 @@ export default function AboutSection() {
             <div className="about-card">
               <h2 className="about-title">About Us</h2>
               <p className="about-desc">
-                <span className="about-highlight"><i className="fa fa-bolt"></i> A-One Skills (Digital Extra)</span> is a passionate digital agency helping brands and startups achieve their digital goals.
+                <span className="about-highlight"><i className="fa fa-bolt"></i> A-One Skills Tech Solutions</span> is a passionate digital agency helping brands and startups achieve their digital goals.
               </p>
               <div className="about-features">
                 <div className="about-feature">

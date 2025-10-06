@@ -21,12 +21,20 @@ export default function Home() {
       </Head>
       <Navbar />
       <HeroSection />
-      <section id="packages" style={{ background: '#f5f7fa', padding: '3rem 0' }}>
+  <section id="packages" style={{ background: '#f5f7fa', padding: '3rem 0' }}>
                   <div className="container">
                     <h1 className="title text-center" style={{ marginBottom: '2.5rem' }}>Our Packages</h1>
                     <PackagesCarousel />
                   </div>
                 </section>
+      <style jsx>{`
+        @media (max-width: 600px) {
+          #packages {
+            padding-top: 1.2rem !important;
+            padding-bottom: 1.2rem !important;
+          }
+        }
+      `}</style>
                 <ServicesSection />
                 <AboutSection />
                 <ContactSection />

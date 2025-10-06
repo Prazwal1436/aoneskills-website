@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-box modern-footer">
           <div className="footer-col footer-brand">
             <div className="footer-logo-box">
-              <Image src="/img/logo.png" alt="Digital Extra Logo" width={200} height={80} className="footer-logo" />
+              <Image src="/img/logo.png" alt="Digital Extra Logo" width={120} height={120} className="footer-logo" style={{objectFit: 'contain', borderRadius: '18px', background: '#fff'}} />
             </div>
             <p>We are passionate about delivering exceptional digital experiences that drive real business results. Our team combines creativity with cutting-edge technology to help your brand stand out in the competitive digital landscape.</p>
           </div>
@@ -85,11 +85,16 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: center;
-          max-width: 220px;
+          width: 120px;
+          height: 120px;
+          max-width: 120px;
+          max-height: 120px;
+          overflow: hidden;
         }
         .footer-logo {
-          max-width: 100%;
-          height: auto;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
           display: block;
         }
         .footer-contact-title {
@@ -138,8 +143,8 @@ export default function Footer() {
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          background: radial-gradient(circle at 60% 40%, #fff 0%, #e3e6f5 60%, #14208a 100%);
-          color: #14208a;
+          background: radial-gradient(circle at 60% 40%, #6a82fb 0%, #14208a 100%);
+          color: #1a237e;
           font-size: 1.35rem;
           box-shadow: 0 4px 16px 0 rgba(20,32,138,0.12);
           border: 2px solid #6a82fb;
@@ -194,6 +199,32 @@ export default function Footer() {
           .footer-col {
             align-items: center;
             text-align: center;
+          }
+        }
+        @media (max-width: 576px) {
+          .modern-footer {
+            padding: 1rem 0.5rem;
+            gap: 1.2rem;
+          }
+          .footer-logo {
+            max-height: 90px;
+          }
+          .footer-contact-column {
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100%;
+            gap: 0.8rem !important;
+            margin-start: 0.5rem !important;
+          }
+          .footer-contact-item {
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            width: 100%;
+            margin-bottom: 0.5rem !important;
+          }
+          .footer-contact-item:last-child {
+          
           }
         }
         @media (max-width: 576px) {
