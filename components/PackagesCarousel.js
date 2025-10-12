@@ -1,454 +1,326 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
 
-export default function PackagesCarousel() {
-  // Touch gesture state
-  const touchStartX = useRef(null);
-  const touchEndX = useRef(null);
-  // Show 1 card at a time, start with first (0-based index)
-  const [active, setActive] = useState(0); // 0-based index for active card
-  const [direction, setDirection] = useState('left'); // Animation direction state
-  const [animating, setAnimating] = useState(false); // Animation in progress
+import React, { useState, useEffect } from 'react';
 
-  // Handle touch start
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
+export default function PackagesCarousel({ country = 'Nepal', category = 'website', title = 'Website Packages' }) {
+  const [packages, setPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [current, setCurrent] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Handle touch move
-  const handleTouchMove = (e) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
+  useEffect(() => {
+    async function fetchPackages() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch('/packageData.json');
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        const pkgs = data?.[country]?.[category] || [];
+        setPackages(pkgs);
+      } catch (err) {
+        setPackages([]);
+        setError('Could not load packages.');
+      }
+      setLoading(false);
+    }
+    fetchPackages();
 
-  // Handle touch end
-  const handleTouchEnd = () => {
-    if (touchStartX.current !== null && touchEndX.current !== null) {
-      const delta = touchEndX.current - touchStartX.current;
-      if (Math.abs(delta) > 50) {
-        if (delta > 0) {
-          prev(); // Swipe right
-        } else {
-          next(); // Swipe left
-        }
+    // Responsive visibleCount & mobile flag
+    function handleResize() {
+      if (window.innerWidth < 576) {
+        setVisibleCount(1);
+        setIsMobile(true);
+      } else if (window.innerWidth < 900) {
+        setVisibleCount(2);
+        setIsMobile(false);
+      } else {
+        setVisibleCount(3);
+        setIsMobile(false);
       }
     }
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-  const router = useRouter();
-  const packages = [
-    {
-      title: '💼 Basic Website',
-      price: 'NPR 25,000',
-      discount: 10,
-      desc: 'Perfect for: Personal brands, portfolios, small businesses',
-      features: [
-        '5–6 Pages (Home, About, Services, Contact, etc.)',
-        'Responsive & Mobile-Friendly Design',
-        'Contact Form Integration',
-        'Social Media Links',
-        'Basic SEO Setup',
-        '1 Month Free Support',
-      ],
-      delivery: '📅 Delivery: 7–10 Days',
-      renew: 'Renews at NPR 5,000/year',
-    },
-    {
-      title: '🚀 Standard Business Website',
-      price: 'NPR 45,000',
-      discount: 20,
-      desc: 'Perfect for: Companies, organizations, service providers',
-      features: [
-        'Up to 10 Pages with Semi-Custom Design',
-        'Blog or News Section',
-        'Google Map Integration',
-        'Payment Gateway (Basic E-commerce Support)',
-        'WhatsApp Chat Integration',
-        'Basic On-Page SEO',
-        '2 Months Free Support',
-      ],
-      delivery: '📅 Delivery: 2–3 Weeks',
-      renew: 'Renews at NPR 8,000/year',
-    },
-    {
-      title: '🏆 Premium / Corporate Website',
-      price: 'NPR 80,000',
-      discount: 25,
-      desc: 'Perfect for: Agencies, growing businesses, large companies',
-      features: [
-        'Up to 25 Pages – Fully Custom Design',
-        'Advanced Animations & Effects',
-        'User Login / Dashboard (Optional)',
-        'Speed & Security Optimization',
-        'SEO Optimization & Google Analytics',
-        'Admin Panel / CMS Access',
-        '3 Months Priority Support',
-      ],
-      delivery: '📅 Delivery: 3–5 Weeks',
-      renew: 'Renews at NPR 15,000/year',
-    },
-    {
-      title: '🛒 E-Commerce Website',
-      price: 'NPR 150,000',
-      discount: 15,
-      desc: 'Perfect for: Online shops, product-based businesses',
-      features: [
-        'Unlimited Product Listings',
-        'Shopping Cart & Secure Checkout',
-        'Payment Gateway Integration (eSewa, Khalti, etc.)',
-        'Product Search, Filters, and Reviews',
-        'Coupon & Discount System',
-        'Inventory & Order Management',
-        'Full SEO + Analytics + Pixel Integration',
-        '6 Months Priority Support',
-      ],
-      delivery: '📅 Delivery: 4–6 Weeks',
-      renew: 'Renews at NPR 25,000/year',
-    }
-  ];
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [country, category]);
 
-  // Auto-slide every 2 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDirection('left');
-      setAnimating(true);
-      setTimeout(() => {
-        setActive((prevActive) => (prevActive + 1) % packages.length);
-        setAnimating(false);
-      }, 400);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, [packages.length]);
+  function handlePrev() {
+    setCurrent((prev) => (prev - visibleCount < 0 ? Math.max(packages.length - visibleCount, 0) : prev - visibleCount));
+  }
+  function handleNext() {
+    setCurrent((prev) => (prev + visibleCount >= packages.length ? 0 : prev + visibleCount));
+  }
 
-  // Endless carousel logic
-  const prev = () => {
-    setDirection('right');
-    setAnimating(true);
-    setTimeout(() => {
-      setActive((prevActive) => {
-        // Loop endlessly: if at first, go to last
-        if (prevActive <= 0) return packages.length - 1;
-        return prevActive - 1;
-      });
-      setAnimating(false);
-    }, 400);
-  };
-  const next = () => {
-    setDirection('left');
-    setAnimating(true);
-    setTimeout(() => {
-      setActive((prevActive) => {
-        // Loop endlessly: if at last, go to first
-        if (prevActive >= packages.length - 1) return 0;
-        return prevActive + 1;
-      });
-      setAnimating(false);
-    }, 400);
-  };
+  // Only show visibleCount cards, no wrapping
+  const visiblePackages = packages.slice(current, current + visibleCount);
 
-  // Card sizes and carousel viewport
-  const cardWidth = 300;
-  const cardMargin = 20;
-  const visibleCards = 1; // Show only one card at a time
-  const totalCards = packages.length;
-  const carouselWidth = (cardWidth + cardMargin) * visibleCards;
+  // Modern card UI for any package type
+  function renderPackage(pkg, idx) {
+    const isWeb = !!pkg.title;
+    const name = pkg.title || pkg.name;
+    const desc = pkg.desc;
+    const price = pkg.price;
+    const discount = pkg.discount;
+    const delivery = pkg.delivery;
+    const renew = pkg.renew;
+    const features = pkg.features;
+    const image = pkg.image;
+    const duration = pkg.duration || pkg.support;
+    const extra = pkg.extra;
 
-  // Calculate lastCenter after visibleCards is defined
-  const lastCenter = Math.max(1, packages.length - visibleCards + 1);
+    // WhatsApp contact link
+    const whatsappNumber = '9779800000000'; // Replace with your WhatsApp number
+    const whatsappMsg = encodeURIComponent(`Hello! I'm interested in the ${name} package (${category}, ${country}). Please provide more details.`);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
 
-  // Calculate translateX to center the active card (middle of 3)
-  const getTranslateX = () => {
-    // Center the active card (middle of 3)
-    const offset = (cardWidth + cardMargin) * (active - 1) - ((carouselWidth - cardWidth) / 2);
-    return -offset;
-  };
-
-  // Helper to calculate discounted price
-  const getDiscountedPrice = (priceStr, discount) => {
-    // Extract number from price string (e.g., 'NPR 25,000')
-    const num = parseInt(priceStr.replace(/[^\d]/g, ''));
-    if (isNaN(num)) return priceStr;
-    const discounted = Math.round(num * (1 - (discount / 100)));
-    return `NPR ${discounted.toLocaleString()}`;
-  };
-
-  // Responsive: show 3 cards on desktop, 1 on mobile
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 600;
-  const cardsToShow = isMobile ? 1 : 3;
-  const [startIndex, setStartIndex] = useState(0); // For desktop carousel
-  // Update navigation logic
-  const handlePrev = () => {
-    if (isMobile) {
-      prev();
-    } else {
-      setStartIndex((prev) => (prev - 1 + packages.length) % packages.length);
-    }
-  };
-  const handleNext = () => {
-    if (isMobile) {
-      next();
-    } else {
-      setStartIndex((prev) => (prev + 1) % packages.length);
-    }
-  };
-
-  const wrapperMaxWidth = isMobile ? '100%' : `${cardsToShow * (cardWidth + cardMargin) - cardMargin}px`;
-
-  return (
-    <div
-      style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: 540, width: '100%' }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      {/* Overlayed carousel arrow buttons on two sides */}
-      <button className="carousel-arrow-btn carousel-arrow-left" style={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)', zIndex: 2, height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginLeft: 8, background: '#fff', boxShadow: '0 2px 12px #6a82fb22', border: '1px solid #6a82fb' }} onClick={handlePrev} aria-label="Previous Package">&#8592;</button>
-      <button className="carousel-arrow-btn carousel-arrow-right" style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', zIndex: 2, height: 60, width: 60, borderRadius: '50%', fontSize: 24, marginRight: 8, background: '#fff', boxShadow: '0 2px 12px #6a82fb22', border: '1px solid #6a82fb' }} onClick={handleNext} aria-label="Next Package">&#8594;</button>
-      <div className="carousel-row-wrapper" style={{ overflow: 'hidden', width: '100%', maxWidth: wrapperMaxWidth, margin: '0 auto' }}>
-        <div
-          className="carousel-row"
-          style={{
-            display: 'flex',
-            flexWrap: 'nowrap',
-            justifyContent: 'center',
-            alignItems: 'stretch',
-            transition: 'transform 0.4s',
-            transform: 'translateX(0)',
-            gap: `${cardMargin}px`,
-            width: '100%',
-          }}
-        >
-          {/* Render package cards: 1 on mobile, 3 on desktop */}
-          {isMobile
-            ? packages[active] && (
-                <div
-                  key={active}
-                  style={{
-                    flex: `0 0 100%`,
-                    maxWidth: '100%',
-                    zIndex: 1,
-                    position: 'static',
-                    transform: 'scale(1)',
-                    boxShadow: '0 8px 32px #6a82fb22',
-                    transition: 'all 0.4s',
-                    cursor: 'pointer',
-                    background: '#fff',
-                    borderRadius: '22px',
-                    border: '2px solid #6a82fb',
-                    overflow: 'hidden',
-                    margin: '0 auto',
-                  }}
-                  onClick={() => router.push(`/packages/${active}`)}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`View details for ${packages[active].title}`}
-                  onKeyPress={e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      router.push(`/packages/${active}`);
-                    }
-                  }}
-                >
-                  {/* Discount Offer Banner */}
-                  <div style={{
-                    width: '100%',
-                    background: 'linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%)',
-                    color: '#fff',
-                    fontWeight: 800,
-                    fontSize: '1.08rem',
-                    textAlign: 'center',
-                    padding: '0.6rem 0',
-                    letterSpacing: '1px',
-                    borderBottom: '2px solid #e53935',
-                    position: 'relative',
-                    zIndex: 2,
-                    boxShadow: '0 2px 12px #fc5c7d22',
-                  }}>
-                    <span style={{ fontSize: '1.2rem', marginRight: 8 }}>🔥</span>
-                    {packages[active].discount}% OFF! Limited Time Offer
-                  </div>
-                  <div className={`card shadow`} style={{
-                    borderRadius: '0 0 18px 18px',
-                    borderTop: 'none',
-                    minHeight: 340,
-                    height: 'auto',
-                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', justifyItems: 'center', textAlign: 'center',
-                    overflow: 'hidden',
-                    background: '#fff',
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    padding: '1.2rem 1rem',
-                  }}>
-                    <div className="card-body d-flex flex-column justify-content-center align-items-center card-body-scroll" style={{ width: '100%', textAlign: 'center', overflowY: 'auto', padding: 0 }}>
-                      <div style={{ width: '100%', textAlign: 'center' }}>
-                        <h4 className="card-title" style={{ fontSize: '1.15rem', textAlign: 'center', fontWeight: 800, color: '#14208a', marginBottom: '0.7rem', wordBreak: 'break-word' }}>{packages[active].title}</h4>
-                        <div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                          <span style={{ textDecoration: 'line-through', color: '#888', fontWeight: 500, fontSize: '1.08rem', marginBottom: 2 }}>{packages[active].price}</span>
-                          <span style={{ color: '#388e3c', fontWeight: 900, fontSize: '1.35rem', background: '#e8f5e9', borderRadius: '8px', padding: '0.2em 1em', boxShadow: '0 2px 8px #388e3c22', marginBottom: 2, width: 'fit-content', maxWidth: '100%' }}>
-                            {getDiscountedPrice(packages[active].price, packages[active].discount)}
-                          </span>
-                          <span style={{ color: '#e53935', fontWeight: 700, fontSize: '1.08rem', marginTop: 2 }}>
-                            ({packages[active].discount}% OFF)
-                          </span>
-                          <span style={{ color: '#14208a', fontWeight: 600, fontSize: '1.01rem', marginTop: 2, display: 'block' }}>
-                            {packages[active].renew}
-                          </span>
-                        </div>
-                        <p style={{ fontWeight: 500, fontSize: '1.05rem', textAlign: 'center', marginBottom: '0.7rem', color: '#444', wordBreak: 'break-word' }}>
-                          {packages[active].desc.length > 80 ? packages[active].desc.slice(0, 77) + '...' : packages[active].desc}
-                        </p>
-                        <ul className="list-unstyled" style={{ fontSize: '0.98rem', marginBottom: '1rem', textAlign: 'center', display: 'inline-block', color: '#14208a', fontWeight: 500, padding: 0, width: '100%' }}>
-                          {packages[active].features.slice(0,5).map((f, j) => <li key={j} style={{ textAlign: 'center', marginBottom: 2, wordBreak: 'break-word' }}>{f}</li>)}
-                        </ul>
-                        <p style={{ fontWeight: 600, color: '#14208a', fontSize: '1.02rem', textAlign: 'center', marginBottom: '0.7rem', wordBreak: 'break-word' }}>{packages[active].delivery}</p>
-                      </div>
-                      <a
-                        href="#"
-                        style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', marginTop: 8, display: 'inline-block', fontSize: '1.08rem', textAlign: 'center', background: 'linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%)', borderRadius: '2rem', padding: '0.85rem 2.2rem', boxShadow: '0 2px 12px #6a82fb22', border: 'none', letterSpacing: '0.5px', transition: 'background 0.2s, transform 0.2s', width: '100%', maxWidth: 320 }}
-                        onClick={e => {
-                          e.preventDefault();
-                          router.push(`/packages/${active}`);
-                        }}
-                      >Learn More</a>
-                    </div>
-                  </div>
-                </div>
-              )
-            : Array(cardsToShow).fill(0).map((_, i) => {
-                const idx = (startIndex + i) % packages.length;
-                const pkg = packages[idx];
-                return (
-                  <div
-                    key={idx}
-                    style={{
-                      flex: `0 0 ${cardWidth}px`,
-                      maxWidth: cardWidth,
-                      zIndex: 1,
-                      position: 'static',
-                      transform: 'scale(1)',
-                      boxShadow: '0 8px 32px #6a82fb22',
-                      transition: 'all 0.4s',
-                      cursor: 'pointer',
-                      background: '#fff',
-                      borderRadius: '22px',
-                      border: '2px solid #6a82fb',
-                      overflow: 'hidden',
-                      margin: '0 auto',
-                    }}
-                    onClick={() => router.push(`/packages/${idx}`)}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={`View details for ${pkg.title}`}
-                    onKeyPress={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        router.push(`/packages/${idx}`);
-                      }
-                    }}
-                  >
-                    {/* Discount Offer Banner */}
-                    <div style={{
-                      width: '100%',
-                      background: 'linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%)',
-                      color: '#fff',
-                      fontWeight: 800,
-                      fontSize: '1.08rem',
-                      textAlign: 'center',
-                      padding: '0.6rem 0',
-                      letterSpacing: '1px',
-                      borderBottom: '2px solid #e53935',
-                      position: 'relative',
-                      zIndex: 2,
-                      boxShadow: '0 2px 12px #fc5c7d22',
-                    }}>
-                      <span style={{ fontSize: '1.2rem', marginRight: 8 }}>🔥</span>
-                      {pkg.discount}% OFF! Limited Time Offer
-                    </div>
-                    <div className={`card shadow`} style={{
-                      borderRadius: '0 0 18px 18px',
-                      borderTop: 'none',
-                      minHeight: 340,
-                      height: 'auto',
-                      display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', justifyItems: 'center', textAlign: 'center',
-                      overflow: 'hidden',
-                      background: '#fff',
-                      width: '100%',
-                      boxSizing: 'border-box',
-                      padding: '1.2rem 1rem',
-                    }}>
-                      <div className="card-body d-flex flex-column justify-content-center align-items-center card-body-scroll" style={{ width: '100%', textAlign: 'center', overflowY: 'auto', padding: 0 }}>
-                        <div style={{ width: '100%', textAlign: 'center' }}>
-                          <h4 className="card-title" style={{ fontSize: '1.15rem', textAlign: 'center', fontWeight: 800, color: '#14208a', marginBottom: '0.7rem', wordBreak: 'break-word' }}>{pkg.title}</h4>
-                          <div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                            <span style={{ textDecoration: 'line-through', color: '#888', fontWeight: 500, fontSize: '1.08rem', marginBottom: 2 }}>{pkg.price}</span>
-                            <span style={{ color: '#388e3c', fontWeight: 900, fontSize: '1.35rem', background: '#e8f5e9', borderRadius: '8px', padding: '0.2em 1em', boxShadow: '0 2px 8px #388e3c22', marginBottom: 2, width: 'fit-content', maxWidth: '100%' }}>
-                              {getDiscountedPrice(pkg.price, pkg.discount)}
-                            </span>
-                            <span style={{ color: '#e53935', fontWeight: 700, fontSize: '1.08rem', marginTop: 2 }}>
-                              ({pkg.discount}% OFF)
-                            </span>
-                            <span style={{ color: '#14208a', fontWeight: 600, fontSize: '1.01rem', marginTop: 2, display: 'block' }}>
-                              {pkg.renew}
-                            </span>
-                          </div>
-                          <p style={{ fontWeight: 500, fontSize: '1.05rem', textAlign: 'center', marginBottom: '0.7rem', color: '#444', wordBreak: 'break-word' }}>
-                            {pkg.desc.length > 80 ? pkg.desc.slice(0, 77) + '...' : pkg.desc}
-                          </p>
-                          <ul className="list-unstyled" style={{ fontSize: '0.98rem', marginBottom: '1rem', textAlign: 'center', display: 'inline-block', color: '#14208a', fontWeight: 500, padding: 0, width: '100%' }}>
-                            {pkg.features.slice(0,5).map((f, j) => <li key={j} style={{ textAlign: 'center', marginBottom: 2, wordBreak: 'break-word' }}>{f}</li>)}
-                          </ul>
-                          <p style={{ fontWeight: 600, color: '#14208a', fontSize: '1.02rem', textAlign: 'center', marginBottom: '0.7rem', wordBreak: 'break-word' }}>{pkg.delivery}</p>
-                        </div>
-                        <a
-                          href="#"
-                          style={{ color: '#fff', fontWeight: 700, textDecoration: 'none', marginTop: 8, display: 'inline-block', fontSize: '1.08rem', textAlign: 'center', background: 'linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%)', borderRadius: '2rem', padding: '0.85rem 2.2rem', boxShadow: '0 2px 12px #6a82fb22', border: 'none', letterSpacing: '0.5px', transition: 'background 0.2s, transform 0.2s', width: '100%', maxWidth: 320 }}
-                          onClick={e => {
-                            e.preventDefault();
-                            router.push(`/packages/${idx}`);
-                          }}
-                        >Learn More</a>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+    return (
+      <div
+        key={name + idx}
+        className="card shadow-lg border-0 h-100 package-card"
+        style={{
+          minWidth: isMobile ? '96vw' : 320,
+          maxWidth: isMobile ? '99vw' : 400,
+          flex: isMobile ? '1 1 99vw' : '1 1 400px',
+          borderRadius: 24,
+          background: 'linear-gradient(135deg,#f8fafc 60%,#e0e7ff 100%)',
+          transition: 'transform 0.2s',
+          position: 'relative',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          margin: isMobile ? '0 auto 24px auto' : '0 auto',
+          boxShadow: isMobile ? '0 6px 32px #6366f122' : '0 4px 16px #6366f122',
+          minHeight: isMobile ? 340 : 280,
+          boxSizing: 'border-box',
+        }}
+        tabIndex={0}
+      >
+        {/* Discount Ribbon */}
+        {discount ? (
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            background: 'linear-gradient(90deg,#f59e42 60%,#f43f5e 100%)',
+            color: '#fff',
+            fontWeight: 700,
+            fontSize: isMobile ? 13 : 15,
+            padding: isMobile ? '6px 16px 6px 10px' : '8px 24px 8px 16px',
+            borderBottomLeftRadius: 20,
+            zIndex: 2,
+            boxShadow: '0 2px 8px #f59e42',
+            letterSpacing: 1
+          }}>
+            <i className="fas fa-bolt mr-1" />
+            {discount}% OFF
+          </div>
+        ) : null}
+        <div className="card-body d-flex flex-column justify-content-between" style={{ padding: isMobile ? 22 : 32, minHeight: isMobile ? 280 : 220, maxHeight: isMobile ? 500 : 'none', overflowY: 'auto' }}>
+          <div style={{ wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}>
+            <h4 className="card-title mb-2" style={{ fontWeight: 700, color: '#3b3b3b', fontSize: isMobile ? 18 : 22, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}>{name}</h4>
+            <p className="card-text mb-2" style={{ color: '#6366f1', fontWeight: 500, fontSize: isMobile ? 15 : 17, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}>{desc}</p>
+            <div className="mb-2">
+              <span className="badge badge-pill badge-success" style={{ fontSize: isMobile ? 15 : 16, padding: isMobile ? '7px 12px' : '8px 16px', wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}>Price: {price}</span>
+            </div>
+            {delivery && <div className="mb-1" style={{ fontSize: isMobile ? 13 : 15, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}><i className="fas fa-truck mr-1" /> {delivery}</div>}
+            {renew && <div className="mb-1" style={{ fontSize: isMobile ? 13 : 15, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}><i className="fas fa-redo mr-1" /> {renew}</div>}
+            {duration && <div className="mb-1" style={{ fontSize: isMobile ? 13 : 15, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}><i className="fas fa-clock mr-1" /> {duration}</div>}
+            {extra && <div className="mb-1" style={{ fontSize: isMobile ? 13 : 15, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}><i className="fas fa-gift mr-1" /> {extra}</div>}
+            {features && Array.isArray(features) && (
+              <ul className="mt-2" style={{ paddingLeft: 18, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}>
+                {features.map((f, i) => <li key={i} style={{ marginBottom: 4, fontSize: isMobile ? 13 : 15, wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-line' }}><i className="fas fa-check-circle text-success mr-1" />{f}</li>)}
+              </ul>
+            )}
+            {/* Contact Us Button */}
+            <div className="mt-3 mb-1 text-center">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-success btn-block"
+                style={{ fontWeight: 600, fontSize: isMobile ? 15 : 16, borderRadius: 16, padding: isMobile ? '10px 18px' : '12px 24px', boxShadow: '0 2px 8px #22c55e22' }}
+              >
+                <i className="fab fa-whatsapp mr-2" /> Contact Us
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="package-carousel-container">
+      <h2 className="mb-4 package-carousel-title">{title}</h2>
+      {loading && <div className="text-center py-5"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
+      {error && <p className="text-danger text-center">{error}</p>}
+      {!loading && !error && packages.length > 0 && (
+        <>
+          <div className="package-carousel-row" style={{ position: 'relative' }}>
+            {/* Overlayed navigation buttons for all screens */}
+            <button
+              onClick={handlePrev}
+              className="btn btn-primary btn-lg rounded-circle shadow-sm package-carousel-btn package-carousel-btn-abs package-carousel-btn-prev"
+              aria-label="Previous"
+              disabled={current === 0}
+              style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+            >
+              <i className="fas fa-chevron-left" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="btn btn-primary btn-lg rounded-circle shadow-sm package-carousel-btn package-carousel-btn-abs package-carousel-btn-next"
+              aria-label="Next"
+              disabled={current + visibleCount >= packages.length}
+              style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+            >
+              <i className="fas fa-chevron-right" />
+            </button>
+            {/* Cards */}
+            {!isMobile ? (
+              <div className="package-carousel-cards">
+                {visiblePackages.map(renderPackage)}
+              </div>
+            ) : (
+              <div className="package-carousel-cards-mobile">
+                {visiblePackages.map(renderPackage)}
+              </div>
+            )}
+          </div>
+          {/* Progress Dots */}
+          <div className="d-flex justify-content-center mt-4 package-carousel-dots">
+            {Array.from({ length: Math.ceil(packages.length / visibleCount) }).map((_, i) => (
+              <span
+                key={i}
+                className={i === Math.floor(current / visibleCount) ? 'package-carousel-dot active' : 'package-carousel-dot'}
+              />
+            ))}
+          </div>
+        </>
+      )}
+      {!loading && !error && packages.length === 0 && <p className="text-center">No packages found.</p>}
       <style jsx>{`
-        .carousel-row {
-          will-change: transform;
+        .package-carousel-container {
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 1rem;
+          position: relative;
         }
-        .carousel-row-wrapper {
-          width: ${carouselWidth}px;
-          max-width: 100%;
+        .package-carousel-title {
+          font-weight: 800;
+          color: #3730a3;
+          letter-spacing: 1px;
+          font-size: 5vw;
+          text-align: center;
         }
-        .carousel-arrow-btn {
-          display: inline-flex;
+        @media (min-width: 600px) {
+          .package-carousel-title {
+            font-size: 2rem;
+            text-align: left;
+          }
+        }
+        .package-carousel-row {
+          display: flex;
+          flex-direction: row;
           align-items: center;
           justify-content: center;
-          transition: box-shadow 0.2s, background 0.2s;
+          gap: 0;
+          position: relative;
+          width: 100%;
         }
-        .carousel-arrow-btn:active {
-          background: #e3eafc;
+        .package-carousel-btn-col {
+          display: none;
+        }
+        .package-carousel-btn-abs {
+          position: absolute !important;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          box-shadow: 0 2px 8px #6366f122;
+        }
+        .package-carousel-btn-prev {
+          left: 8px;
+        }
+        .package-carousel-btn-next {
+          right: 8px;
         }
         @media (max-width: 600px) {
-          .carousel-row-wrapper {
-            width: 98vw;
-            min-width: 0;
+          .package-carousel-btn-abs {
+            top: 44%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
           }
-          .card {
-            min-height: auto !important;
-            height: auto !important;
-            overflow: visible !important;
+          .package-carousel-btn-prev {
+            left: 2px;
           }
-          .card-body-scroll {
-            height: auto !important;
-            max-height: none !important;
-            overflow-y: visible !important;
-            padding: 0 4px !important;
+          .package-carousel-btn-next {
+            right: 2px;
           }
-          .carousel-arrow-btn {
-            height: 48px !important;
-            width: 48px !important;
-            font-size: 22px !important;
+        }
+        .package-carousel-cards {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          width: 76%;
+        }
+        @media (max-width: 900px) {
+          .package-carousel-cards {
+            grid-template-columns: repeat(2, 1fr);
+            width: 100%;
+          }
+        }
+        @media (max-width: 600px) {
+          .package-carousel-cards {
+            grid-template-columns: 1fr;
+            width: 100%;
+          }
+        }
+        .package-carousel-cards-mobile {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          justify-content: center;
+          align-items: center;
+          gap: 0;
+          width: 100%;
+        }
+        .package-carousel-btn {
+          width: 48px;
+          height: 48px;
+          font-size: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 1;
+          transition: opacity 0.2s;
+        }
+        .package-carousel-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #e0e7ff;
+          margin: 0 4px;
+          display: inline-block;
+          transition: background 0.2s;
+        }
+        .package-carousel-dot.active {
+          background: #6366f1;
+          box-shadow: 0 0 0 2px #6366f1;
+        }
+        @media (max-width: 600px) {
+          .package-carousel-row {
+            flex-direction: column;
+          }
+          .package-carousel-cards {
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+          }
+          .package-carousel-title {
+            font-size: 1.3rem;
+            text-align: center;
           }
         }
       `}</style>

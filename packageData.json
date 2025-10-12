@@ -1,0 +1,673 @@
+{
+  "Nepal": {
+    "Website": [
+      {
+        "title": "💼 Basic Website",
+        "price": "NPR 25,000",
+        "discount": 10,
+        "desc": "Perfect for: Personal brands, portfolios, small businesses. Includes a modern, responsive design and essential features for a strong online presence.",
+        "features": [
+          "5–6 Pages (Home, About, Services, Contact, etc.)",
+          "Responsive & Mobile-Friendly Design",
+          "Contact Form Integration",
+          "Social Media Links",
+          "Basic SEO Setup",
+          "1 Month Free Support"
+        ],
+        "delivery": "📅 Delivery: 7–10 Days",
+        "renew": "Renews at NPR 5,000/year",
+        "duration": "1 Month Free Support",
+        "extra": "Free SSL Certificate"
+      },
+      {
+        "title": "🚀 Standard Business Website",
+        "price": "NPR 45,000",
+        "discount": 20,
+        "desc": "Perfect for: Companies, organizations, service providers. Includes blog/news, payment gateway, and enhanced support.",
+        "features": [
+          "Up to 10 Pages with Semi-Custom Design",
+          "Blog or News Section",
+          "Google Map Integration",
+          "Payment Gateway (Basic E-commerce Support)",
+          "WhatsApp Chat Integration",
+          "Basic On-Page SEO",
+          "2 Months Free Support"
+        ],
+        "delivery": "📅 Delivery: 2–3 Weeks",
+        "renew": "Renews at NPR 8,000/year",
+        "duration": "2 Months Free Support",
+        "extra": "Free Google Analytics Setup"
+      },
+      {
+        "title": "🏆 Premium / Corporate Website",
+        "price": "NPR 80,000",
+        "discount": 25,
+        "desc": "Perfect for: Agencies, growing businesses, large companies. Includes advanced features, custom design, and priority support.",
+        "features": [
+          "Up to 25 Pages – Fully Custom Design",
+          "Advanced Animations & Effects",
+          "User Login / Dashboard (Optional)",
+          "Speed & Security Optimization",
+          "SEO Optimization & Google Analytics",
+          "Admin Panel / CMS Access",
+          "3 Months Priority Support"
+        ],
+        "delivery": "📅 Delivery: 3–5 Weeks",
+        "renew": "Renews at NPR 15,000/year",
+        "duration": "3 Months Priority Support",
+        "extra": "Dedicated Account Manager"
+      },
+      {
+        "title": "🛒 E-Commerce Website",
+        "price": "NPR 150,000",
+        "discount": 15,
+        "desc": "Perfect for: Online shops, product-based businesses. Includes unlimited products, advanced analytics, and extended support.",
+        "features": [
+          "Unlimited Product Listings",
+          "Shopping Cart & Secure Checkout",
+          "Payment Gateway Integration (eSewa, Khalti, etc.)",
+          "Product Search, Filters, and Reviews",
+          "Coupon & Discount System",
+          "Inventory & Order Management",
+          "Full SEO + Analytics + Pixel Integration",
+          "6 Months Priority Support"
+        ],
+        "delivery": "📅 Delivery: 4–6 Weeks",
+        "renew": "Renews at NPR 25,000/year",
+        "duration": "6 Months Priority Support",
+        "extra": "Free Training Session for Staff"
+  },
+        {
+          "title": "🏛️ Government Website Solution",
+          "price": "NPR 200,000",
+          "discount": 10,
+          "desc": "Perfect for: Ministries, municipalities, government offices. Built for security, compliance, accessibility, and scalability.",
+          "features": [
+            "Multi-language Support (Nepali/English)",
+            "Accessibility (WCAG 2.1)",
+            "Official Document & Notice Management",
+            "Secure Admin Panel (Role-based)",
+            "Government Email Integration",
+            "Mobile & Desktop Responsive",
+            "Data Encryption & Security Audit",
+            "Disaster Recovery & Backup",
+            "Integration with e-Government Services",
+            "News/Press Release Section",
+            "Citizen Feedback & Grievance Form",
+            "SEO & Analytics",
+            "Training for Staff",
+            "1 Year Priority Support"
+          ],
+          "delivery": "📅 Delivery: 6–8 Weeks",
+          "renew": "Renews at NPR 30,000/year",
+          "duration": "1 Year Priority Support",
+          "extra": "On-site Training & Documentation"
+        },
+        {
+          "title": "✨ Custom Website Package",
+          "price": "NPR 50,000+",
+          "discount": 0,
+          "desc": "Perfect for: Any client needing a fully tailored solution. Features, integrations, and design are customized to your requirements.",
+          "features": [
+            "Requirement Analysis & Consultation",
+            "Flexible Page Count & Design",
+            "Custom Integrations (API, Payment, Government, etc.)",
+            "Advanced Security & Scalability",
+            "Multi-language & Accessibility Options",
+            "Mobile/Desktop Responsive",
+            "SEO & Analytics",
+            "Dedicated Project Manager",
+            "Quote & Timeline after Planning",
+            "Training & Documentation",
+            "3 Months Free Support"
+          ],
+          "delivery": "📅 Delivery: Based on requirements (typically 3–8 Weeks)",
+          "renew": "Custom renewal based on features",
+          "duration": "3 Months Free Support",
+          "extra": "Full flexibility & ongoing consultation"
+        }
+    ],
+    "cloud": [
+      {
+        "name": "Cloud Hosting",
+        "price": "Rs 5,000/year",
+        "desc": "Fast, secure hosting for websites. Includes daily backups, SSL, and 99.9% uptime guarantee.",
+        "features": [
+          "SSD Storage",
+          "Unlimited Bandwidth",
+          "Free SSL",
+          "Daily Backups"
+        ],
+        "support": "24/7 Support",
+        "image": "/img/cloud-hosting.png"
+      },
+      {
+        "name": "Server Setup",
+        "price": "Rs 10,000+",
+        "desc": "Linux/Windows server configuration. Includes firewall setup and performance optimization.",
+        "features": [
+          "Initial Server Configuration",
+          "Firewall Setup",
+          "Performance Tuning"
+        ],
+        "support": "1 Month Free Support",
+        "image": "/img/server-setup.png"
+      },
+      {
+        "name": "Security Audit",
+        "price": "Rs 8,000+",
+        "desc": "Vulnerability scan, report, recommendations. Includes penetration testing and remediation plan.",
+        "features": [
+          "Full Vulnerability Scan",
+          "Penetration Testing",
+          "Remediation Plan"
+        ],
+        "support": "Report & Consultation",
+        "image": "/img/security-audit.png"
+      }
+    ],
+    "erp": [
+      {
+        "name": "Basic CRM",
+        "price": "Rs 25,000",
+        "desc": "Customer management, sales tracking. Includes lead management and reporting dashboard.",
+        "features": [
+          "Customer Database",
+          "Sales Tracking",
+          "Lead Management",
+          "Reporting Dashboard"
+        ],
+        "support": "2 Months Free Support",
+        "image": "/img/basic-crm.png"
+      },
+      {
+        "name": "ERP System",
+        "price": "Rs 80,000+",
+        "desc": "Inventory, HR, finance modules. Includes custom workflow automation and analytics.",
+        "features": [
+          "Inventory Management",
+          "HR Module",
+          "Finance Module",
+          "Custom Workflow Automation",
+          "Analytics Dashboard"
+        ],
+        "support": "3 Months Priority Support",
+        "image": "/img/erp-system.png"
+      },
+      {
+        "name": "Custom Business App",
+        "price": "Rs 40,000+",
+        "desc": "Tailored to your workflow. Includes mobile and web versions, user roles, and notifications.",
+        "features": [
+          "Custom Features",
+          "Mobile & Web Versions",
+          "User Roles",
+          "Notifications"
+        ],
+        "support": "3 Months Free Support",
+        "image": "/img/business-app.png"
+      }
+    ],
+    "marketing": [
+      {
+        "name": "Facebook Boosting",
+        "price": "Rs 180 per $1",
+        "desc": "No hidden fees. Includes campaign setup, targeting, and weekly reporting.",
+        "features": [
+          "Campaign Setup",
+          "Target Audience Selection",
+          "Weekly Reporting"
+        ],
+        "support": "Ongoing Consultation",
+        "image": "/img/facebook-boosting.png"
+      },
+      {
+        "name": "SEO Package",
+        "price": "Rs 12,000/month",
+        "desc": "On-page, off-page, reporting. Includes keyword research, backlink building, and monthly analytics.",
+        "features": [
+          "Keyword Research",
+          "On-Page Optimization",
+          "Backlink Building",
+          "Monthly Analytics"
+        ],
+        "support": "Monthly Review Meeting",
+        "image": "/img/seo-package.png"
+      },
+      {
+        "name": "Branding Package",
+        "price": "Rs 20,000",
+        "desc": "Logo, brand guidelines, social kit. Includes business card design and brand story development.",
+        "features": [
+          "Logo Design",
+          "Brand Guidelines",
+          "Social Media Kit",
+          "Business Card Design",
+          "Brand Story"
+        ],
+        "support": "2 Revisions Included",
+        "image": "/img/branding-package.png"
+      },
+      {
+        "name": "Content Marketing",
+        "price": "Rs 10,000/month",
+        "desc": "Blog, social posts, strategy. Includes content calendar and performance tracking.",
+        "features": [
+          "Blog Writing",
+          "Social Media Posts",
+          "Content Calendar",
+          "Performance Tracking"
+        ],
+        "support": "Monthly Analytics Report",
+        "image": "/img/content-marketing.png"
+      }
+    ],
+    "ai": [
+      {
+        "name": "AI Chatbot",
+        "price": "Rs 30,000+",
+        "desc": "Custom chatbot for website/app. Includes training, integration, and analytics dashboard.",
+        "features": [
+          "Custom Chatbot",
+          "Integration with Website/App",
+          "Training & Support",
+          "Analytics Dashboard"
+        ],
+        "support": "2 Months Free Support",
+        "image": "/img/ai-chatbot.png"
+      },
+      {
+        "name": "Business Analysis",
+        "price": "Rs 15,000",
+        "desc": "IT strategy, process mapping. Includes SWOT analysis and digital transformation roadmap.",
+        "features": [
+          "IT Strategy",
+          "Process Mapping",
+          "SWOT Analysis",
+          "Digital Transformation Roadmap"
+        ],
+        "support": "Consultation Session",
+        "image": "/img/business-analysis.png"
+      },
+      {
+        "name": "ML Model Development",
+        "price": "Rs 50,000+",
+        "desc": "Predictive analytics, automation. Includes data preprocessing, model training, and deployment.",
+        "features": [
+          "Data Preprocessing",
+          "Model Training",
+          "Deployment",
+          "Performance Monitoring"
+        ],
+        "support": "3 Months Free Support",
+        "image": "/img/ml-model.png"
+      }
+    ],
+    "design": [
+      {
+        "name": "Logo Design",
+        "price": "Rs 5,000",
+        "desc": "2 concepts, 3 revisions. Includes vector files and color palette.",
+        "features": [
+          "2 Concepts",
+          "3 Revisions",
+          "Vector Files",
+          "Color Palette"
+        ],
+        "support": "1 Week Delivery",
+        "image": "/img/logo-design.png"
+      },
+      {
+        "name": "Social Media Kit",
+        "price": "Rs 7,000",
+        "desc": "Banners, profile, post templates. Includes cover images and highlight icons.",
+        "features": [
+          "Banners",
+          "Profile Templates",
+          "Post Templates",
+          "Cover Images",
+          "Highlight Icons"
+        ],
+        "support": "2 Revisions Included",
+        "image": "/img/social-media-kit.png"
+      },
+      {
+        "name": "UI/UX Design",
+        "price": "Rs 15,000+",
+        "desc": "App/web design, wireframes. Includes user flow mapping and interactive prototypes.",
+        "features": [
+          "App/Web Design",
+          "Wireframes",
+          "User Flow Mapping",
+          "Interactive Prototypes"
+        ],
+        "support": "3 Revisions Included",
+        "image": "/img/ui-ux-design.png"
+      }
+    ]
+  },
+  "USA": {
+    "webMobile": [
+      {
+        "title": "💼 Basic Website",
+        "price": "$300",
+        "discount": 10,
+        "desc": "Perfect for: Personal brands, portfolios, small businesses",
+        "features": [
+          "5–6 Pages (Home, About, Services, Contact, etc.)",
+          "Responsive & Mobile-Friendly Design",
+          "Contact Form Integration",
+          "Social Media Links",
+          "Basic SEO Setup",
+          "1 Month Free Support"
+        ],
+        "delivery": "📅 Delivery: 7–10 Days",
+        "renew": "Renews at $60/year"
+      },
+      {
+        "title": "🚀 Standard Business Website",
+        "price": "$700",
+        "discount": 20,
+        "desc": "Perfect for: Companies, organizations, service providers",
+        "features": [
+          "Up to 10 Pages with Semi-Custom Design",
+          "Blog or News Section",
+          "Google Map Integration",
+          "Payment Gateway (Basic E-commerce Support)",
+          "WhatsApp Chat Integration",
+          "Basic On-Page SEO",
+          "2 Months Free Support"
+        ],
+        "delivery": "📅 Delivery: 2–3 Weeks",
+        "renew": "Renews at $100/year"
+      },
+      {
+        "title": "🏆 Premium / Corporate Website",
+        "price": "$1200",
+        "discount": 25,
+        "desc": "Perfect for: Agencies, growing businesses, large companies",
+        "features": [
+          "Up to 25 Pages – Fully Custom Design",
+          "Advanced Animations & Effects",
+          "User Login / Dashboard (Optional)",
+          "Speed & Security Optimization",
+          "SEO Optimization & Google Analytics",
+          "Admin Panel / CMS Access",
+          "3 Months Priority Support"
+        ],
+        "delivery": "📅 Delivery: 3–5 Weeks",
+        "renew": "Renews at $200/year"
+      },
+      {
+        "title": "🛒 E-Commerce Website",
+        "price": "$2500",
+        "discount": 15,
+        "desc": "Perfect for: Online shops, product-based businesses",
+        "features": [
+          "Unlimited Product Listings",
+          "Shopping Cart & Secure Checkout",
+          "Payment Gateway Integration (Stripe, PayPal, etc.)",
+          "Product Search, Filters, and Reviews",
+          "Coupon & Discount System",
+          "Inventory & Order Management",
+          "Full SEO + Analytics + Pixel Integration",
+          "6 Months Priority Support"
+        ],
+        "delivery": "📅 Delivery: 4–6 Weeks",
+        "renew": "Renews at $400/year"
+      }
+    ],
+    "cloud": [
+      {
+        "name": "Cloud Hosting",
+        "price": "$80/year",
+        "desc": "Fast, secure hosting for websites"
+      },
+      {
+        "name": "Server Setup",
+        "price": "$200+",
+        "desc": "Linux/Windows server configuration"
+      },
+      {
+        "name": "Security Audit",
+        "price": "$150+",
+        "desc": "Vulnerability scan, report, recommendations"
+      }
+    ],
+    "erp": [
+      {
+        "name": "Basic CRM",
+        "price": "$400",
+        "desc": "Customer management, sales tracking"
+      },
+      {
+        "name": "ERP System",
+        "price": "$1500+",
+        "desc": "Inventory, HR, finance modules"
+      },
+      {
+        "name": "Custom Business App",
+        "price": "$800+",
+        "desc": "Tailored to your workflow"
+      }
+    ],
+    "marketing": [
+      {
+        "name": "Facebook Boosting",
+        "price": "$1.5 per $1",
+        "desc": "No hidden fees"
+      },
+      {
+        "name": "SEO Package",
+        "price": "$200/month",
+        "desc": "On-page, off-page, reporting"
+      },
+      {
+        "name": "Branding Package",
+        "price": "$350",
+        "desc": "Logo, brand guidelines, social kit"
+      },
+      {
+        "name": "Content Marketing",
+        "price": "$180/month",
+        "desc": "Blog, social posts, strategy"
+      }
+    ],
+    "ai": [
+      {
+        "name": "AI Chatbot",
+        "price": "$600+",
+        "desc": "Custom chatbot for website/app"
+      },
+      {
+        "name": "Business Analysis",
+        "price": "$300",
+        "desc": "IT strategy, process mapping"
+      },
+      {
+        "name": "ML Model Development",
+        "price": "$900+",
+        "desc": "Predictive analytics, automation"
+      }
+    ],
+    "design": [
+      {
+        "name": "Logo Design",
+        "price": "$100",
+        "desc": "2 concepts, 3 revisions"
+      },
+      {
+        "name": "Social Media Kit",
+        "price": "$140",
+        "desc": "Banners, profile, post templates"
+      },
+      {
+        "name": "UI/UX Design",
+        "price": "$300+",
+        "desc": "App/web design, wireframes"
+      }
+    ]
+  },
+  "Australia": {
+    "webMobile": [
+      {
+        "title": "💼 Basic Website",
+        "price": "AUD 400",
+        "discount": 10,
+        "desc": "Perfect for: Personal brands, portfolios, small businesses",
+        "features": [
+          "5–6 Pages (Home, About, Services, Contact, etc.)",
+          "Responsive & Mobile-Friendly Design",
+          "Contact Form Integration",
+          "Social Media Links",
+          "Basic SEO Setup",
+          "1 Month Free Support"
+        ],
+        "delivery": "📅 Delivery: 7–10 Days",
+        "renew": "Renews at AUD 80/year"
+      },
+      {
+        "title": "🚀 Standard Business Website",
+        "price": "AUD 900",
+        "discount": 20,
+        "desc": "Perfect for: Companies, organizations, service providers",
+        "features": [
+          "Up to 10 Pages with Semi-Custom Design",
+          "Blog or News Section",
+          "Google Map Integration",
+          "Payment Gateway (Basic E-commerce Support)",
+          "WhatsApp Chat Integration",
+          "Basic On-Page SEO",
+          "2 Months Free Support"
+        ],
+        "delivery": "📅 Delivery: 2–3 Weeks",
+        "renew": "Renews at AUD 150/year"
+      },
+      {
+        "title": "🏆 Premium / Corporate Website",
+        "price": "AUD 1600",
+        "discount": 25,
+        "desc": "Perfect for: Agencies, growing businesses, large companies",
+        "features": [
+          "Up to 25 Pages – Fully Custom Design",
+          "Advanced Animations & Effects",
+          "User Login / Dashboard (Optional)",
+          "Speed & Security Optimization",
+          "SEO Optimization & Google Analytics",
+          "Admin Panel / CMS Access",
+          "3 Months Priority Support"
+        ],
+        "delivery": "📅 Delivery: 3–5 Weeks",
+        "renew": "Renews at AUD 300/year"
+      },
+      {
+        "title": "🛒 E-Commerce Website",
+        "price": "AUD 3200",
+        "discount": 15,
+        "desc": "Perfect for: Online shops, product-based businesses",
+        "features": [
+          "Unlimited Product Listings",
+          "Shopping Cart & Secure Checkout",
+          "Payment Gateway Integration (Stripe, PayPal, etc.)",
+          "Product Search, Filters, and Reviews",
+          "Coupon & Discount System",
+          "Inventory & Order Management",
+          "Full SEO + Analytics + Pixel Integration",
+          "6 Months Priority Support"
+        ],
+        "delivery": "📅 Delivery: 4–6 Weeks",
+        "renew": "Renews at AUD 600/year"
+      }
+    ],
+    "cloud": [
+      {
+        "name": "Cloud Hosting",
+        "price": "AUD 120/year",
+        "desc": "Fast, secure hosting for websites"
+      },
+      {
+        "name": "Server Setup",
+        "price": "AUD 300+",
+        "desc": "Linux/Windows server configuration"
+      },
+      {
+        "name": "Security Audit",
+        "price": "AUD 220+",
+        "desc": "Vulnerability scan, report, recommendations"
+      }
+    ],
+    "erp": [
+      {
+        "name": "Basic CRM",
+        "price": "AUD 600",
+        "desc": "Customer management, sales tracking"
+      },
+      {
+        "name": "ERP System",
+        "price": "AUD 2000+",
+        "desc": "Inventory, HR, finance modules"
+      },
+      {
+        "name": "Custom Business App",
+        "price": "AUD 1100+",
+        "desc": "Tailored to your workflow"
+      }
+    ],
+    "marketing": [
+      {
+        "name": "Facebook Boosting",
+        "price": "AUD 2 per $1",
+        "desc": "No hidden fees"
+      },
+      {
+        "name": "SEO Package",
+        "price": "AUD 250/month",
+        "desc": "On-page, off-page, reporting"
+      },
+      {
+        "name": "Branding Package",
+        "price": "AUD 400",
+        "desc": "Logo, brand guidelines, social kit"
+      },
+      {
+        "name": "Content Marketing",
+        "price": "AUD 220/month",
+        "desc": "Blog, social posts, strategy"
+      }
+    ],
+    "ai": [
+      {
+        "name": "AI Chatbot",
+        "price": "AUD 800+",
+        "desc": "Custom chatbot for website/app"
+      },
+      {
+        "name": "Business Analysis",
+        "price": "AUD 400",
+        "desc": "IT strategy, process mapping"
+      },
+      {
+        "name": "ML Model Development",
+        "price": "AUD 1200+",
+        "desc": "Predictive analytics, automation"
+      }
+    ],
+    "design": [
+      {
+        "name": "Logo Design",
+        "price": "AUD 150",
+        "desc": "2 concepts, 3 revisions"
+      },
+      {
+        "name": "Social Media Kit",
+        "price": "AUD 200",
+        "desc": "Banners, profile, post templates"
+      },
+      {
+        "name": "UI/UX Design",
+        "price": "AUD 400+",
+        "desc": "App/web design, wireframes"
+      }
+    ]
+  }
+}

@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav id="nav-bar" className="custom-navbar">
       <div className="navbar-inner">
         <a className="navbar-brand" href="/">
-          <img src="/img/logo.png" alt="Logo" style={{ height: '48px', borderRadius: '0', boxShadow: 'none' }} />
+          <img src="/img/logo.png" alt="Logo" style={{ height: '60px', borderRadius: '0', boxShadow: 'none' }} />
         </a>
         <button className="navbar-toggle" aria-label="Toggle menu" onClick={() => setMenuOpen(!menuOpen)}>
           <span className="bar"></span>
@@ -28,7 +28,8 @@ export default function Navbar() {
           box-shadow: 0 2px 16px #6a82fb22;
           padding: 0.7rem 1.5rem;
           z-index: 1050;
-          position: fixed;
+          position: sticky;
+          top: 0;
           width: 100%;
         }
         .navbar-inner {
@@ -39,7 +40,7 @@ export default function Navbar() {
           margin: 0 auto;
         }
         .navbar-brand img {
-          height: 48px;
+          height: 60px;
           border-radius: 0;
           box-shadow: none;
           transition: none;

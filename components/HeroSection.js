@@ -102,9 +102,10 @@ export default function HeroSection() {
           min-height: 100vh;
           width: 100vw;
           overflow: hidden;
-          padding: 0;
+          padding-top: 0;
+          padding-bottom: 0;
           color: #fff;
-          margin-top: 64px;
+          margin-top: 0;
         }
         .hero-bg-container {
           position: absolute;
